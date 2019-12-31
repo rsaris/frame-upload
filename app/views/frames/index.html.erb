@@ -1,0 +1,23 @@
+<div class="padded-page">
+  <h1>Frames</h1>
+  <div class="padded-page__body">
+    <table class="frames">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Subject</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @frames.each do |frame| %>
+          <tr>
+            <td><%= frame.name %></td>
+            <td><%= frame.email %></td>
+            <td><%= frame.subject %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

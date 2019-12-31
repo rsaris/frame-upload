@@ -1,0 +1,39 @@
+// Place all the styles related to the Frames controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.padded-page {
+  padding: 1rem;
+
+  &__body {
+    margin: 0 auto;
+    max-width: 50rem;
+    width: 100%;
+  }
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  label, input {
+    display: block;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+}
+
+.frames {
+  border-collapse: collapse;
+
+  thead tr {
+    border-bottom: 1px solid #222222;
+  }
+
+  th, td {
+    padding: .5rem;
+  }
+}
