@@ -32,7 +32,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
@@ -59,4 +59,13 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # Load variables into ENV from .env file
+  env_file = File.join(Rails.root, '.env')
+  if File.exists?(env_file)
+    File.readlines( env_file ).each do |line|
+      line_match = line.match( /(?<key>[^=]*)=(?<value>.*)/ )
+      ENV[line_match['key']] = line_match['value'].strip unless line_match.nil? || line.starts_with?( '#' )
+    end
+  end
 end

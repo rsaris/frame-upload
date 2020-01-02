@@ -1,7 +1,7 @@
 <div class="padded-page">
   <h1>New Frame</h1>
   <div class="padded-page__body">
-    <%= form_tag uploads_path do %>
+    <%= form_tag uploads_path, multipart: true do %>
       <div class="form-group">
         <%= label_tag :frame %>
         <%= select_tag :frame, options_from_collection_for_select(@frames, :id, :name) %>
