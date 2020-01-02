@@ -3,13 +3,18 @@
   <div class="padded-page__body">
     <%= form_tag uploads_path, multipart: true do %>
       <div class="form-group">
-        <%= label_tag :frame %>
-        <%= select_tag :frame, options_from_collection_for_select(@frames, :id, :name) %>
+        <%= label_tag :file %>
+        <%= file_field_tag :file %>
       </div>
 
       <div class="form-group">
-        <%= label_tag :file %>
-        <%= file_field_tag :file %>
+        <%= label_tag :frame %>
+        <% @frames.each do |frame| %>
+          <label>
+            <%= check_box_tag 'frame_ids[]', frame.id %>
+            <%= frame.name %> (<%= frame.email %>)
+          </label>
+        <% end %>
       </div>
 
       <div class="form-actions">

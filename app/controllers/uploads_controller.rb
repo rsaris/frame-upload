@@ -4,18 +4,25 @@ class UploadsController < ApplicationController
   def new; end
 
   def create
-    frame = Frame.find_by(id: params[:frame])
+    frame_ids = params[:frame_ids]
     image = params[:file]
 
-    if frame.present? && image.present?
-      PhotoMailer.with(
-        frame: frame,
-        image_file: image.tempfile,
-        image_name: image.original_filename,
-      ).photo_email.deliver_now
+    if image.present?
+      frame_ids.each do |frame_id|
+        frame = Frame.find_by(id: frame_id)
+        next if frame.nil?
+
+        PhotoMailer.with(
+          frame: frame,
+          image_file: image.tempfile,
+          image_name: image.original_filename,
+        ).photo_email.deliver_now
+      end
+
+      flash.now[:success] = "#{frame_ids.size} email(s) sent"
     end
 
-    render :new
+    redirect_to new_upload_path
   end
 
   private
