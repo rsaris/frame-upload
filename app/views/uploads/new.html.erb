@@ -1,14 +1,14 @@
 <div class="padded-page">
-  <h1>New Picture</h1>
+  <h1>Send Picture</h1>
   <div class="padded-page__body">
     <%= form_tag uploads_path, multipart: true do %>
       <div class="form-group">
-        <%= label_tag :file %>
+        <%= label_tag :file, 'Picture' %>
         <%= file_field_tag :file %>
       </div>
 
       <div class="form-group">
-        <%= label_tag :frame %>
+        <%= label_tag :frame, 'Frame(s)' %>
         <% @frames.each do |frame| %>
           <label>
             <%= check_box_tag 'frame_ids[]', frame.id %>
@@ -18,7 +18,7 @@
       </div>
 
       <div class="form-actions">
-        <%= submit_tag 'Save' %>
+        <%= submit_tag 'Send' %>
       </div>
     <% end %>
   </div>
