@@ -1,0 +1,17 @@
+form {
+  label, input, select {
+    display: block;
+  }
+
+  input[type="checkbox"], input[type="radio"] {
+    display: initial;
+  }
+
+  label {
+    margin-bottom: .25rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+}

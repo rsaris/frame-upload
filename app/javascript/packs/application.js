@@ -16,3 +16,12 @@ const ReactDOM = require("react-dom");
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+const App = require('../app').default;
+
+document.addEventListener("DOMContentLoaded", function() {
+  ReactDOM.render(
+    React.createElement(App),
+    document.getElementById('root'),
+  );
+});

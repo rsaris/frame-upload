@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  root 'uploads#new'
+  # Keep this in the top so it doesn't conflict w/ the the catchall below
+  namespace :api, defaults: { format: :json } do
+    resources :uploads, only: :create
+  end
 
-  resources :frames, only: [:new, :create, :index]
-  resources :uploads, only: [:new, :create]
+  root 'render#index'
+  match '*path', format: :html, to: 'render#index', via: :all
 end
