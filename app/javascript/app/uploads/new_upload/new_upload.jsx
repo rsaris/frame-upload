@@ -38,19 +38,22 @@ export default class NewUpload extends Component {
     )
   };
 
-  get frames() {
-    return [
-      { id: 1, name: 'Mom', email: 'mom@gmail.com' },
-      { id: 2, name: 'Grandpop', email: 'grandpop@gmail.com' },
-    ];
-  }
-
   get hasInputs() {
     return !!this.state.file && !!this.selectedFrameIds.length;
   }
 
   get selectedFrameIds() {
     return Object.keys(this.state.frames).filter(key => this.state.frames[key]);
+  }
+
+  componentDidMount() {
+    this.loadFrames();
+  }
+
+  async loadFrames() {
+    this.setState({ loading: true });
+    const frames = await http.findAll('frames');
+    this.setState({ frames, loading: false });
   }
 
   render() {

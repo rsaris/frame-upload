@@ -53,13 +53,6 @@ async function callFetch(path, request) {
   return null;
 }
 
-function create(resourceName, data) {
-  return post(
-    `/api/${resourceName}s`,
-    data,
-  );
-}
-
 function get(path) {
   return callFetch(path, buildRequest('GET'));
 }
@@ -71,8 +64,20 @@ function post(path, data) {
   );
 }
 
+function create(resourceName, data) {
+  return post(
+    `/api/${resourceName}s`,
+    data,
+  );
+}
+
+function findAll(resourceName) {
+  return get(`/api/${resourceName}s`);
+}
+
 export default {
   create,
+  findAll,
   get,
   post,
 };
